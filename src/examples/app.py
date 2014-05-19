@@ -65,14 +65,14 @@ class GoogleApp(appier.WebApp):
         access_token = api.oauth_access(code)
         self.session["gg.access_token"] = access_token
         return self.redirect(
-            self.url_for("gg.index")
+            self.url_for("google.index")
         )
 
     @appier.exception_handler(appier.OAuthAccessError)
     def oauth_error(self, error):
         if "gg.access_token" in self.session: del self.session["gg.access_token"]
         return self.redirect(
-            self.url_for("gg.index")
+            self.url_for("google.index")
         )
 
     def ensure_api(self):
