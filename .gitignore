@@ -3,5 +3,5 @@
 
 session.shelve*
 
-/dist/
-/src/google_api.egg-info/
+/dist
+/src/google_api.egg-info
