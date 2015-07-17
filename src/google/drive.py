@@ -39,7 +39,12 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 class DriveApi(object):
 
+    def list_drive(self):
+        url = self.base_url + "drive/v2/files"
+        contents = self.get(url)
+        return contents
+
     def get_drive(self, id):
-        url = self.base_url + "drive/v1/files/%s" % id
+        url = self.base_url + "drive/v2/files/%s" % id
         contents = self.get(url)
         return contents
