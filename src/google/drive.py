@@ -68,14 +68,13 @@ class DriveApi(object):
             "Content-Type" : content_type,
             "data" : data
         }
-        data_m = dict(file = [metadata_p, media_p])
         url = self.base_url + "upload/drive/v2/files"
         contents = self.post(
             url,
             params = dict(
                 uploadType = "multipart"
             ),
-            data_m = data_m,
+            data_m = dict(file = [metadata_p, media_p]),
             mime = "multipart/related"
         )
         return contents
@@ -93,14 +92,13 @@ class DriveApi(object):
             "Content-Type" : "application/json;charset=utf-8",
             "data" : metadata_s
         }
-        data_m = dict(file = [metadata_p])
         url = self.base_url + "upload/drive/v2/files"
         contents = self.post(
             url,
             params = dict(
                 uploadType = "multipart"
             ),
-            data_m = data_m,
+            data_m = dict(file = [metadata_p]),
             mime = "multipart/related"
         )
         return contents
