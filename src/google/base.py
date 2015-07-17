@@ -40,8 +40,9 @@ __license__ = "GNU General Public License (GPL), Version 3"
 import appier
 
 from . import user
+from . import drive
 
-BASE_URL = "https://www.googleapis.com/plus/v1/"
+BASE_URL = "https://www.googleapis.com/"
 """ The default base url to be used when no other
 base url value is provided to the constructor """
 
@@ -69,7 +70,8 @@ scope string for the oauth value """
 
 class Api(
     appier.OAuth2Api,
-    user.UserApi
+    user.UserApi,
+    drive.DriveApi
 ):
 
     def __init__(self, *args, **kwargs):
