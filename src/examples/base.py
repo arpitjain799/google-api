@@ -41,9 +41,15 @@ import appier
 
 import google
 
+SCOPE = (
+    "email",
+    "https://www.googleapis.com/auth/drive"
+)
+
 def get_api():
     return google.Api(
         client_id = appier.conf("GOOGLE_ID"),
         client_secret = appier.conf("GOOGLE_SECRET"),
-        redirect_url = appier.conf("GOOGLE_REDIRECT_URL")
+        redirect_url = appier.conf("GOOGLE_REDIRECT_URL"),
+        scope = SCOPE
     )
