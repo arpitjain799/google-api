@@ -58,12 +58,32 @@ class GoogleApp(appier.WebApp):
         user = api.self_user()
         return user
 
+    @appier.route("/files", "GET")
+    def files(self):
+        url = self.ensure_api()
+        if url: return self.redirect(url)
+        api = self.get_api()
+        contents = api.list_drive()
+        return contents
+
     @appier.route("/files/<std:id>", "GET")
     def file(self, id):
         url = self.ensure_api()
         if url: return self.redirect(url)
         api = self.get_api()
         contents = api.get_drive(id)
+        return contents
+
+    @appier.route("/files/insert/<str:message>", "GET")
+    def file_insert(self, message):
+        url = self.ensure_api()
+        if url: return self.redirect(url)
+        api = self.get_api()
+        contents = api.insert_drive(
+            message,
+            title = message,
+            content_type = "text/plain"
+        )
         return contents
 
     @appier.route("/oauth", "GET")
