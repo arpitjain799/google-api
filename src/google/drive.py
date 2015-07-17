@@ -80,7 +80,37 @@ class DriveApi(object):
         )
         return contents
 
+    def folder_drive(self, title, parent = "root"):
+        metadata = dict(
+            title = title,
+            parents = [dict(id = parent)],
+            mimeType = "application/vnd.google-apps.folder"
+        )
+        metadata_s = json.dumps(metadata)
+        if appier.legacy.is_unicode(metadata_s):
+            metadata_s = metadata_s.encode("utf-8")
+        metadata_p = {
+            "Content-Type" : "application/json;charset=utf-8",
+            "data" : metadata_s
+        }
+        data_m = dict(file = [metadata_p])
+        url = self.base_url + "upload/drive/v2/files"
+        contents = self.post(
+            url,
+            params = dict(
+                uploadType = "multipart"
+            ),
+            data_m = data_m,
+            mime = "multipart/related"
+        )
+        return contents
+
     def get_drive(self, id):
         url = self.base_url + "drive/v2/files/%s" % id
+        contents = self.get(url)
+        return contents
+
+    def children_drive(self, id = "root"):
+        url = self.base_url + "drive/v2/files/%s/children" % id
         contents = self.get(url)
         return contents

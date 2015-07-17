@@ -86,6 +86,23 @@ class GoogleApp(appier.WebApp):
         )
         return contents
 
+    @appier.route("/folders/insert/<str:title>", "GET")
+    def folder_insert(self, title):
+        url = self.ensure_api()
+        if url: return self.redirect(url)
+        api = self.get_api()
+        contents = api.folder_drive(title)
+        return contents
+
+    @appier.route("/children", "GET")
+    def children(self):
+        url = self.ensure_api()
+        if url: return self.redirect(url)
+        id = self.field("id", "root")
+        api = self.get_api()
+        contents = api.children_drive(id = id)
+        return contents
+
     @appier.route("/oauth", "GET")
     def oauth(self):
         code = self.field("code")
