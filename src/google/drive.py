@@ -58,8 +58,8 @@ class DriveApi(object):
         metadata = dict()
         if title: metadata["title"] = title
         metadata_s = json.dumps(metadata)
-        if appier.legacy.is_unicode(metadata_s):
-            metadata_s = metadata_s.encode("utf-8")
+        is_unicode = appier.legacy.is_unicode(metadata_s)
+        if is_unicode: metadata_s = metadata_s.encode("utf-8")
         metadata_p = {
             "Content-Type" : "application/json;charset=utf-8",
             "data" : metadata_s
@@ -86,8 +86,8 @@ class DriveApi(object):
             mimeType = "application/vnd.google-apps.folder"
         )
         metadata_s = json.dumps(metadata)
-        if appier.legacy.is_unicode(metadata_s):
-            metadata_s = metadata_s.encode("utf-8")
+        is_unicode = appier.legacy.is_unicode(metadata_s)
+        if is_unicode: metadata_s = metadata_s.encode("utf-8")
         metadata_p = {
             "Content-Type" : "application/json;charset=utf-8",
             "data" : metadata_s
