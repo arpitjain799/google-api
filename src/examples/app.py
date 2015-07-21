@@ -81,8 +81,8 @@ class GoogleApp(appier.WebApp):
         api = self.get_api()
         contents = api.insert_drive(
             message,
-            title = message,
-            content_type = "text/plain"
+            content_type = "text/plain",
+            title = message
         )
         return contents
 
