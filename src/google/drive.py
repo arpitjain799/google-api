@@ -43,20 +43,22 @@ import appier
 
 class DriveApi(object):
 
-    def list_drive(self):
+    def list_drive(self, query = None):
         url = self.base_url + "drive/v2/files"
-        contents = self.get(url)
-        return contents
+        contents = self.get(url, q = query)
+        return contents["items"]
 
     def insert_drive(
         self,
         data,
         content_type = "application/octet-stream",
-        title = None
+        title = None,
+        parents = None
     ):
         data = appier.legacy.bytes(data)
         metadata = dict()
         if title: metadata["title"] = title
+        if parents: metadata["parents"] = parents
         metadata_s = json.dumps(metadata)
         is_unicode = appier.legacy.is_unicode(metadata_s)
         if is_unicode: metadata_s = metadata_s.encode("utf-8")
@@ -79,7 +81,11 @@ class DriveApi(object):
         )
         return contents
 
-    def folder_drive(self, title, parent = "root"):
+    def folder_drive(self, title, parent = "root", overwrite = False):
+        if not overwrite:
+            query = "title = '%s' and '%s' in parents and trashed = false" % (title, parent)
+            contents = self.list_drive(query = query)
+            if contents: return contents[0]
         metadata = dict(
             title = title,
             parents = [dict(id = parent)],
