@@ -115,7 +115,7 @@ class DriveApi(object):
         url = self.base_url + "drive/v2/files/%s" % id
         contents = self.get(url)
         return contents
-    
+
     def delete_drive(self, id):
         url = self.base_url + "drive/v2/files/%s" % id
         contents = self.delete(url)
@@ -125,3 +125,10 @@ class DriveApi(object):
         url = self.base_url + "drive/v2/files/%s/children" % id
         contents = self.get(url)
         return contents
+
+    def remove_drive(self, title, parent = "root"):
+        query = "title = '%s' and '%s' in parents and trashed = false" % (title, parent)
+        contents = self.list_drive(query = query)
+        if not contents: return
+        previous = contents[0]
+        self.delete_drive(previous["id"])
