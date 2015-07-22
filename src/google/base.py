@@ -91,6 +91,7 @@ class Api(
     def auth_callback(self, params):
         if not self.refresh_token: return
         self.oauth_refresh()
+        params["access_token"] = self.get_access_token()
 
     def oauth_authorize(self, state = None, access_type = None):
         url = self.login_url + "oauth2/auth"
