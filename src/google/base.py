@@ -88,13 +88,14 @@ class Api(
         self.access_token = kwargs.get("access_token", None)
         self.refresh_token = kwargs.get("refresh_token", None)
 
-    def oauth_authorize(self, state = None):
+    def oauth_authorize(self, state = None, access_type = "online"):
         url = self.login_url + "oauth2/auth"
         values = dict(
             client_id = self.client_id,
             redirect_uri = self.redirect_url,
             response_type = "code",
-            scope = " ".join(self.scope)
+            scope = " ".join(self.scope),
+            access_type = access_type
         )
         if state: values["state"] = state
         data = appier.legacy.urlencode(values)
@@ -111,6 +112,23 @@ class Api(
             grant_type = "authorization_code",
             redirect_uri = self.redirect_url,
             code = code
+        )
+        self.access_token = contents["access_token"]
+        self.refresh_token = contents.get("refresh_token", None)
+        self.trigger("access_token", self.access_token)
+        self.trigger("refresh_token", self.refresh_token)
+        return self.access_token
+
+    def oauth_refresh(self):
+        url = self.login_url + "oauth2/token"
+        contents = self.post(
+            url,
+            token = False,
+            client_id = self.client_id,
+            client_secret = self.client_secret,
+            grant_type = "refresh_token",
+            redirect_uri = self.redirect_url,
+            refresh_token = self.refresh_token
         )
         self.access_token = contents["access_token"]
         self.trigger("access_token", self.access_token)
