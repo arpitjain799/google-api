@@ -88,16 +88,20 @@ class Api(
         self.access_token = kwargs.get("access_token", None)
         self.refresh_token = kwargs.get("refresh_token", None)
 
-    def oauth_authorize(self, state = None, access_type = "online"):
+    def auth_callback(self, params):
+        if not self.refresh_token: return
+        self.oauth_refresh()
+
+    def oauth_authorize(self, state = None, access_type = None):
         url = self.login_url + "oauth2/auth"
         values = dict(
             client_id = self.client_id,
             redirect_uri = self.redirect_url,
             response_type = "code",
-            scope = " ".join(self.scope),
-            access_type = access_type
+            scope = " ".join(self.scope)
         )
         if state: values["state"] = state
+        if access_type: values["access_type"] = access_type
         data = appier.legacy.urlencode(values)
         url = url + "?" + data
         return url
