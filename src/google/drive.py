@@ -82,10 +82,12 @@ class DriveApi(object):
         return contents
 
     def folder_drive(self, title, parent = "root", overwrite = False):
-        if not overwrite:
-            query = "title = '%s' and '%s' in parents and trashed = false" % (title, parent)
-            contents = self.list_drive(query = query)
-            if contents: return contents[0]
+        query = "title = '%s' and '%s' in parents and trashed = false" % (title, parent)
+        contents = self.list_drive(query = query)
+        if contents:
+            previous = contents[0]
+            if overwrite: self.delete_drive(previous["id"])
+            else: return previous
         metadata = dict(
             title = title,
             parents = [dict(id = parent)],
@@ -112,6 +114,11 @@ class DriveApi(object):
     def get_drive(self, id):
         url = self.base_url + "drive/v2/files/%s" % id
         contents = self.get(url)
+        return contents
+    
+    def delete_drive(self, id):
+        url = self.base_url + "drive/v2/files/%s" % id
+        contents = self.delete(url)
         return contents
 
     def children_drive(self, id = "root"):
