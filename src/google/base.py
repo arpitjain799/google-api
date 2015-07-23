@@ -94,7 +94,7 @@ class Api(
         params["access_token"] = self.get_access_token()
         headers["Authorization"] = "Bearer %s" % self.get_access_token()
 
-    def oauth_authorize(self, state = None, access_type = None):
+    def oauth_authorize(self, state = None, access_type = None, approval_prompt = True):
         url = self.login_url + "oauth2/auth"
         values = dict(
             client_id = self.client_id,
@@ -104,6 +104,7 @@ class Api(
         )
         if state: values["state"] = state
         if access_type: values["access_type"] = access_type
+        if approval_prompt: values["approval_prompt"] = "force" 
         data = appier.legacy.urlencode(values)
         url = url + "?" + data
         return url
