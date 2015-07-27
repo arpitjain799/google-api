@@ -104,7 +104,7 @@ class Api(
         )
         if state: values["state"] = state
         if access_type: values["access_type"] = access_type
-        if approval_prompt: values["approval_prompt"] = "force" 
+        if approval_prompt: values["approval_prompt"] = "force"
         data = appier.legacy.urlencode(values)
         url = url + "?" + data
         return url
