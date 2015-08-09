@@ -45,7 +45,7 @@ setuptools.setup(
     version = "0.1.7",
     author = "Hive Solutions Lda.",
     author_email = "development@hive.pt",
-    description = "Google API",
+    description = "Google API Client",
     license = "GNU General Public License (GPL), Version 3",
     keywords = "google api",
     url = "http://google_api.hive.pt",
