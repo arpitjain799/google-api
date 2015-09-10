@@ -39,7 +39,7 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 class TokenApi(object):
 
-    def info(self):
+    def token_info(self):
         url = self.base_url + "oauth2/v1/tokeninfo"
         contents = self.get(url)
         return contents
