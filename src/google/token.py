@@ -19,6 +19,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Hive Google API. If not, see <http://www.gnu.org/licenses/>.
 
+__author__ = "João Magalhães <joamag@hive.pt>"
+""" The author(s) of the module """
+
 __version__ = "1.0.0"
 """ The version of the module """
 
@@ -34,12 +37,9 @@ __copyright__ = "Copyright (c) 2008-2015 Hive Solutions Lda."
 __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
 
-from . import base
-from . import drive
-from . import token
-from . import user
+class TokenApi(object):
 
-from .base import BASE_URL, Api
-from .drive import DriveApi
-from .token import TokenApi
-from .user import UserApi
+    def info(self):
+        url = self.base_url + "oauth2/v1/tokeninfo"
+        contents = self.get(url)
+        return contents

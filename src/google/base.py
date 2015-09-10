@@ -41,6 +41,7 @@ import appier
 
 from . import user
 from . import drive
+from . import token
 
 BASE_URL = "https://www.googleapis.com/"
 """ The default base url to be used when no other
@@ -71,7 +72,8 @@ scope string for the oauth value """
 class Api(
     appier.OAuth2Api,
     user.UserApi,
-    drive.DriveApi
+    drive.DriveApi,
+    token.TokenApi
 ):
 
     def __init__(self, *args, **kwargs):
