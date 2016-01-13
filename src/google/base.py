@@ -132,6 +132,7 @@ class Api(
         url = self.login_url + "oauth2/token"
         contents = self.post(
             url,
+            callback = False,
             token = False,
             client_id = self.client_id,
             client_secret = self.client_secret,
