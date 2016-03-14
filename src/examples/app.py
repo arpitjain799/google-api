@@ -43,8 +43,12 @@ from . import base
 
 class GoogleApp(appier.WebApp):
 
-    def __init__(self):
-        appier.WebApp.__init__(self, name = "google")
+    def __init__(self, *args, **kwargs):
+        appier.WebApp.__init__(
+            self,
+            name = "google",
+            *args, **kwargs
+        )
 
     @appier.route("/", "GET")
     def index(self):
