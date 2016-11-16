@@ -39,7 +39,7 @@ __license__ = "Apache License, Version 2.0"
 
 class TokenApi(object):
 
-    def token_info(self, access_token = None):
+    def info_token(self, access_token = None):
         access_token = access_token or self.access_token
         url = self.base_url + "oauth2/v1/tokeninfo"
         contents = self.get(url, access_token = access_token)
