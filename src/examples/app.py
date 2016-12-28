@@ -139,3 +139,5 @@ class GoogleApp(appier.WebApp):
 if __name__ == "__main__":
     app = GoogleApp()
     app.serve()
+else:
+    __path__ = []
