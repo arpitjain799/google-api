@@ -1,4 +1,4 @@
-# [Google API](http://google_api.hive.pt)
+# [Google API](http://google-api.hive.pt)
 
 Implementation of the Google OAuth based API.
 
