@@ -48,7 +48,7 @@ setuptools.setup(
     description = "Google API Client",
     license = "Apache License, Version 2.0",
     keywords = "google api",
-    url = "http://google_api.hive.pt",
+    url = "http://google-api.hive.pt",
     zip_safe = False,
     packages = [
         "google"
