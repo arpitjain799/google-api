@@ -41,7 +41,7 @@ import json
 
 import appier
 
-class DriveApi(object):
+class DriveAPI(object):
 
     def list_drive(self, query = None):
         url = self.base_url + "drive/v2/files"

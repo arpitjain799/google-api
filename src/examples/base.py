@@ -47,7 +47,7 @@ SCOPE = (
 )
 
 def get_api():
-    return google.Api(
+    return google.API(
         client_id = appier.conf("GOOGLE_ID"),
         client_secret = appier.conf("GOOGLE_SECRET"),
         redirect_url = appier.conf("GOOGLE_REDIRECT_URL"),
