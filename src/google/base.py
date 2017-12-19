@@ -44,8 +44,8 @@ from . import drive
 from . import token
 
 BASE_URL = "https://www.googleapis.com/"
-""" The default base url to be used when no other
-base url value is provided to the constructor """
+""" The default base URL to be used when no other
+base URL value is provided to the constructor """
 
 LOGIN_URL = "https://accounts.google.com/o/"
 """ Default base url that is going to be used for the
