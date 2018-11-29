@@ -44,7 +44,7 @@ class SpreadsheetAPI(object):
         contents = self.get(
             url,
             ranges = ranges,
-            includeGridData = include_grid_data
+            includeGridData = "true" if include_grid_data else "false"
         )
         return contents
 
