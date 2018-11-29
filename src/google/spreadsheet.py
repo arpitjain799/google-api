@@ -40,7 +40,7 @@ __license__ = "Apache License, Version 2.0"
 class SpreadsheetAPI(object):
 
     def get_spreadsheet(self, id, ranges = None, include_grid_data = None):
-        url = self.sheets_url + "spreadsheets/%s" % id
+        url = self.sheets_url + "v4/spreadsheets/%s" % id
         contents = self.get(
             url,
             ranges = ranges,
