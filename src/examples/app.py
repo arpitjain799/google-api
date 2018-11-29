@@ -107,6 +107,20 @@ class GoogleApp(appier.WebApp):
         contents = api.children_drive(id = id)
         return contents
 
+    @appier.route("/spreadsheets/<str:id>", "GET")
+    def spreadsheet(self, id):
+        ranges = self.field("ranges")
+        include_grid_data = self.field("include_grid_data", cast = bool)
+        url = self.ensure_api()
+        if url: return self.redirect(url)
+        api = self.get_api()
+        contents = api.get_spreadsheet(
+            id,
+            ranges = ranges,
+            include_grid_data = include_grid_data
+        )
+        return contents
+
     @appier.route("/oauth", "GET")
     def oauth(self):
         code = self.field("code")
