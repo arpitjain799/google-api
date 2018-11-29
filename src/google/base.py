@@ -42,6 +42,7 @@ import appier
 from . import user
 from . import drive
 from . import token
+from . import spreadsheet
 
 BASE_URL = "https://www.googleapis.com/"
 """ The default base URL to be used when no other
@@ -50,6 +51,10 @@ base URL value is provided to the constructor """
 LOGIN_URL = "https://accounts.google.com/o/"
 """ Default base url that is going to be used for the
 login part of the specification, the oauth login basis """
+
+TEMPLATE_URL = "https://%s.googleapis.com/"
+""" The template that is going to be used in the building
+the final base URL for custom domain based operations """
 
 CLIENT_ID = None
 """ The default value to be used for the client id
@@ -73,7 +78,8 @@ class API(
     appier.OAuth2API,
     user.UserAPI,
     drive.DriveAPI,
-    token.TokenAPI
+    token.TokenAPI,
+    spreadsheet.SpreadsheetAPI
 ):
 
     def __init__(self, *args, **kwargs):
@@ -83,6 +89,7 @@ class API(
         self.redirect_url = appier.conf("GOOGLE_REDIRECT_URL", REDIRECT_URL)
         self.base_url = kwargs.get("base_url", BASE_URL)
         self.login_url = kwargs.get("login_url", LOGIN_URL)
+        self.template_url = kwargs.get("template_url", TEMPLATE_URL)
         self.client_id = kwargs.get("client_id", self.client_id)
         self.client_secret = kwargs.get("client_secret", self.client_secret)
         self.redirect_url = kwargs.get("redirect_url", self.redirect_url)
