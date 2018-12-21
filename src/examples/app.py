@@ -62,6 +62,14 @@ class GoogleApp(appier.WebApp):
         user = api.self_user()
         return user
 
+    @appier.route("/userinfo", "GET")
+    def userinfo(self):
+        url = self.ensure_api()
+        if url: return self.redirect(url)
+        api = self.get_api()
+        userinfo = api.userinfo_oauth()
+        return userinfo
+
     @appier.route("/files", "GET")
     def files(self):
         url = self.ensure_api()

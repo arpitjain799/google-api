@@ -41,6 +41,7 @@ import appier
 
 from . import user
 from . import drive
+from . import oauth
 from . import token
 from . import spreadsheet
 
@@ -78,6 +79,7 @@ class API(
     appier.OAuth2API,
     user.UserAPI,
     drive.DriveAPI,
+    oauth.OauthAPI,
     token.TokenAPI,
     spreadsheet.SpreadsheetAPI
 ):
