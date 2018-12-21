@@ -52,7 +52,7 @@ class GoogleApp(appier.WebApp):
 
     @appier.route("/", "GET")
     def index(self):
-        return self.me()
+        return self.userinfo()
 
     @appier.route("/me", "GET")
     def me(self):
