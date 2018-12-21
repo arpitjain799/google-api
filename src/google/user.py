@@ -37,8 +37,11 @@ __copyright__ = "Copyright (c) 2008-2018 Hive Solutions Lda."
 __license__ = "Apache License, Version 2.0"
 """ The license for the module """
 
+import appier
+
 class UserAPI(object):
 
+    @appier.deprecated()
     def self_user(self):
         url = self.base_url + "plus/v1/people/me"
         contents = self.get(url)
