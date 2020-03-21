@@ -37,7 +37,7 @@ __copyright__ = "Copyright (c) 2008-2020 Hive Solutions Lda."
 __license__ = "Apache License, Version 2.0"
 """ The license for the module """
 
-class OauthAPI(object):
+class OAuthAPI(object):
 
     def userinfo_oauth(self):
         url = self.base_url + "oauth2/v2/userinfo"

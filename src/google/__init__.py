@@ -43,7 +43,7 @@ from . import user
 
 from .base import BASE_URL, API
 from .drive import DriveAPI
-from .oauth import OauthAPI
+from .oauth import OAuthAPI
 from .spreadsheet import SpreadsheetAPI
 from .token import TokenAPI
 from .user import UserAPI

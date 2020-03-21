@@ -51,7 +51,7 @@ base URL value is provided to the constructor """
 
 LOGIN_URL = "https://accounts.google.com/o/"
 """ Default base URL that is going to be used for the
-login part of the specification, the oauth login basis """
+login part of the specification, the OAuth login basis """
 
 TEMPLATE_URL = "https://%s.googleapis.com/"
 """ The template that is going to be used in the building
@@ -73,13 +73,13 @@ SCOPE = (
     "email",
 )
 """ The list of permissions to be used to create the
-scope string for the oauth value """
+scope string for the OAuth value """
 
 class API(
     appier.OAuth2API,
     user.UserAPI,
     drive.DriveAPI,
-    oauth.OauthAPI,
+    oauth.OAuthAPI,
     token.TokenAPI,
     spreadsheet.SpreadsheetAPI
 ):
