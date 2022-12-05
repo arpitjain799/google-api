@@ -5,4 +5,4 @@ session.shelve*
 
 /dist
 /build
-/src/google-api.egg-info
+/src/google_api.egg-info
